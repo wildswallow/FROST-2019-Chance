@@ -1,6 +1,3 @@
-work_dir <- "C:/Users/Jason/Desktop/Chance Files"
-setwd(work_dir)
-
 # year 1 variable recoding - incentives, class start time, field, advanced stats degree, post test location
 data1415 <- read.csv("Final 14.15.csv")
 
