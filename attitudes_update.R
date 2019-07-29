@@ -1,3 +1,4 @@
+########################## Still need to update to "FinalV2's" instead of "Final"
 ### ATTITUDES ###
 
 ### SET WORKING DIRECTORY ###
