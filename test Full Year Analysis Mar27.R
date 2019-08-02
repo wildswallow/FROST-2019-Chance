@@ -840,7 +840,7 @@ if (length(levels(data$textbook))==5|length(levels(data$textbook))==6) {
   means <- tapply(data_box[,my_rv],data_box$textbook,mean)
   grand_mean <- mean(data_box[,my_rv])
   #  dev.off()
-  ggplot(aes_string(y=my_rv,x="textbook",group="instructor.last.name",fill="textbook"),data=data_box) + geom_bar (stat = "identity", na.rm=TRUE) + geom_boxplot() + xlab("Section") + ylab(my_rv_lab) + ggtitle(paste("Boxplots of", my_rv_lab,"by Section and Textbook")) + theme_bw() +
+  ggplot(aes_string(y=my_rv,x="textbook",group="instructor.last.name",fill="textbook"),data=data_box) + geom_boxplot() + xlab("Section") + ylab(my_rv_lab) + ggtitle(paste("Boxplots of", my_rv_lab,"by Section and Textbook")) + theme_bw() +
     geom_segment(aes(x=.647,y=means[1],xend=1.355,yend=means[1]), colour="deeppink4", size=1.3) +
     geom_segment(aes(x=1.613,y=means[2],xend=2.355,yend=means[2]), colour="deeppink4", size=1.3) +
     geom_segment(aes(x=2.611,y=means[3],xend=3.363,yend=means[3]), colour="deeppink4", size=1.3) +
