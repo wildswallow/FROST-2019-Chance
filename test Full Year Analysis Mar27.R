@@ -1007,6 +1007,27 @@ summary(model7)
 
 data_box$new_gain = data_box$new_post_perc - data_box$new_pre_perc
 
+#count n per year
+table(data$year)
+#checking vars (one at a time) for how it looks
+var = "Value_pre"
+ggplot(aes_string(y = var, x="year",group="year",fill="year"),data=data) + geom_boxplot() + xlab("Year") + ggtitle(paste("Boxplots of", var,"by Year")) + theme_bw() 
+sum(is.na(data$Value_pre))/nrow(data)
+#for categorical vars 
+table(data$race_origin, data$year)
+#finds NA's by variable by year
+aggregate(gender ~ year, data=data, function(x) {sum(is.na(x))}, na.action = NULL)
+#Check all vars in cleaned data=allyears for NA's, crosscheck with excel variables explained
+View(apply(data, MARGIN = 2, function(x) sum(is.na(x))))
+
+#finding column names similar across all 3 datasets
+names1415 <- colnames(data1415)
+names1516 <- colnames(data1516)
+names1617 <- colnames(data1617)
+names14_16 <- intersect(names1415, names1516)
+full_col_names <- intersect(names14_16, names1617)
+View(full_col_names)
+           
 model8 = lmer(new_ach_gain ~ 1   
               + pre_perc + Affect_pre
                + Cognitive.Competence_pre + Difficulty_pre 
