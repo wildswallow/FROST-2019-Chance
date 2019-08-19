@@ -1044,8 +1044,8 @@ my_rv <- data$new_post_perc - data$new_pre_perc
 my_rv = data$new_post_perc
 my_rv = (data$new_post_perc - data$new_pre_perc)/(1-data$new_pre_perc)
 
-model7 = lmer(new_ach_gain ~ 1 + gpa_pre + SATACTzscore + pre_perc +textbook+ ( 1 | institution/instructor.last.name/InstructorName_Section_Semester), data=data_box)
-summary(model7)
+# model7 = lmer(new_ach_gain ~ 1 + gpa_pre + SATACTzscore + pre_perc +textbook+ ( 1 | institution/instructor.last.name/InstructorName_Section_Semester), data=data_box)
+# summary(model7)
 
 data_box$new_gain = data_box$new_post_perc - data_box$new_pre_perc
 
@@ -1093,14 +1093,14 @@ install.packages("expss")
 View(cro(data$instructor.last.name, list(total(), data$year %nest% data$semester_fs)))
 
 
-modeltest = lm(new_ach_gain ~1 + as.factor(quarter), data=data_box)
-summary(modeltest)
-
 # Categorizing $quarter
 data_box$quarter[data_box$class.meet.weeks == 8] = "half"
 data_box$quarter[data_box$class.meet.weeks == 10 | data_box$class.meet.weeks == 11] = "quarter"
 data_box$quarter[data_box$class.meet.weeks == 13 | data_box$class.meet.weeks == 14 | data_box$class.meet.weeks == 15 | data_box$class.meet.weeks == 15.5 | data_box$class.meet.weeks == 16 | data_box$class.meet.weeks == 17 | data_box$class.meet.weeks == 18] = "semester"
-table(data$institution, data$quarter)
+table(data_box$institution, data_box$quarter)
+
+modeltest = lm(new_ach_gain ~1 + as.factor(quarter), data=data_box)
+summary(modeltest)
 #################################################################################################
 
 model8 = lmer(new_ach_gain ~ 1   
@@ -1182,7 +1182,7 @@ model8 = lmer(new_ach_gain ~ 1
               + semester   
               + dep_ind3
               + ( 1 | institution/instructor.last.name/InstructorName_Section_Semester)
-              , data=data_box, na.action = na.exclude, REML = FALSE )
+              , data=allclean, na.action = na.exclude, REML = FALSE )
 summary(model8)
 ranef(model8)
 #REML convergence all years
